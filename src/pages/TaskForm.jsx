@@ -1,6 +1,13 @@
 import { useState } from "react";
 
+import useFetch from "./useFetch";
+
 const TaskForm = () => {
+  const { data: projectData } = useFetch("http://localhost:5001/projects");
+  const { data: teamsData } = useFetch("http://localhost:5001/teams");
+  const { data: tagsData } = useFetch("http://localhost:5001/tags");
+  console.log(tagsData);
+
   return (
     <section className="mb-5">
       <div className="container">
@@ -12,15 +19,17 @@ const TaskForm = () => {
           <br />
           <input className="form-control" type="text" placeholder="Name" />
           <br />
-          <label className="form-label" htmlFor="">
+          <label className="form-label" htmlFor="projects">
             Project Name
           </label>
           <br />
-          <select className="form-select" name="" id="">
+          <select className="form-select" name="projects" id="">
             <option value="">---Select Project---</option>
-            <option value="">Project 1</option>
-            <option value="">Project 2</option>
-            <option value="">Project 2</option>
+            {projectData?.map((project) => (
+              <option key={project._id} value={project._id}>
+                {project.name}
+              </option>
+            ))}
           </select>
           <br />
           <label className="form-label" htmlFor="">
@@ -40,9 +49,11 @@ const TaskForm = () => {
           <br />
           <select className="form-select" name="" id="">
             <option value="">---Select Team---</option>
-            <option value=""> Marketing</option>
-            <option value="">Development</option>
-            <option value="">Finance</option>
+            {teamsData?.map((team) => (
+              <option key={team._id} value={team._id}>
+                {team.name}
+              </option>
+            ))}
           </select>
 
           <br />
@@ -51,10 +62,12 @@ const TaskForm = () => {
           </label>
           <br />
           <select className="form-select" name="" id="">
-            <option value="">---Select Team---</option>
-            <option value=""> Urgent</option>
-            <option value="">Bug</option>
-            <option value="">Error</option>
+            <option value="">---Select Tags---</option>
+            {tagsData?.map((tag) => (
+              <option key={tag._id} value={tag._id}>
+                {tag.name}
+              </option>
+            ))}
           </select>
           <br />
           <label htmlFor="" className="form-label">

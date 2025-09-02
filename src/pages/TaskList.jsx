@@ -1,6 +1,11 @@
 import Menu from "./Menu";
+import useFetch from "./useFetch";
 
 const TaskList = () => {
+  const { data: taskData } = useFetch("http://localhost:5001/tasks");
+  const { data: projectData } = useFetch("http://localhost:5001/projects");
+  console.log(taskData);
+
   return (
     <section className="row">
       {/* Sidebar */}
@@ -22,9 +27,11 @@ const TaskList = () => {
                     id=""
                   >
                     <option value="">Project Name</option>
-                    <option value="">project 1</option>
-                    <option value="">Project 2</option>
-                    <option value="">Project 3</option>
+                    {projectData?.map((project) => (
+                      <option key={project._id} value={project.name}>
+                        {project.name}
+                      </option>
+                    ))}
                   </select>
                 </th>
                 <th scope="col">
@@ -72,14 +79,16 @@ const TaskList = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Website Revamp</td>
-                <td>Mark Otto</td>
-                <td>Development</td>
-                <td>UI, Urgent</td>
-                <td>In Progress</td>
-              </tr>
-              <tr>
+              {taskData?.map((task) => (
+                <tr key={task._id}>
+                  <td>{task.name}</td>
+                  <td>{task.owners.join(",")}</td>
+                  <td>{task.team}</td>
+                  <td>{task.tags.join(",")}</td>
+                  <td>{task.status}</td>
+                </tr>
+              ))}
+              {/* <tr>
                 <td>Mobile App</td>
                 <td>Jacob Thornton</td>
                 <td>Design</td>
@@ -92,7 +101,7 @@ const TaskList = () => {
                 <td>Backend</td>
                 <td>API, Critical</td>
                 <td>Completed</td>
-              </tr>
+              </tr> */}
             </tbody>
           </table>
         </div>

@@ -82,8 +82,8 @@ const TaskList = () => {
               {taskData?.map((task) => (
                 <tr key={task._id}>
                   <td>{task.name}</td>
-                  <td>{task.owners.join(",")}</td>
-                  <td>{task.team}</td>
+                  <td>fbfd</td>
+                  <td>dcdfc</td>
                   <td>{task.tags.join(",")}</td>
                   <td>{task.status}</td>
                 </tr>

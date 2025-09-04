@@ -44,17 +44,17 @@ const TaskForm = () => {
     event.preventDefault();
     console.log(taskForm);
 
-    // try {
-    //   fetch("http://localhost:5001/tasks", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(taskForm),
-    //   });
-    // } catch (error) {
-    //   console.log("Error:", error);
-    // }
+    try {
+      fetch("http://localhost:5001/tasks", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(taskForm),
+      });
+    } catch (error) {
+      console.log("Error:", error);
+    }
 
     setTaskForm({
       name: "",

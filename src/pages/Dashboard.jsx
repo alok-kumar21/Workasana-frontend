@@ -2,10 +2,14 @@ import Menu from "./Menu";
 
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import useFetch from "./useFetch";
 
 const Dashboard = () => {
   const [tasks, setTasks] = useState(null);
   const navigate = useNavigate();
+
+  const { data: tagsData } = useFetch("http://localhost:5001/tags");
+  console.log(tagsData);
 
   const fetchTasks = async () => {
     try {
@@ -62,105 +66,21 @@ const Dashboard = () => {
               </span>
             </div>
           </section>
-          {/* projects */}
-          <section id="project" className="container">
-            <div className="d-flex mt-4">
-              <h2>Project</h2>
-              <select className=" form-select-sm bg-light ms-3" name="" id="">
-                <option value="#">Filter</option>
-                <option value="In Progress">In progress</option>
-                <option value="In Progress">Completed</option>
-              </select>
-
-              <Link to="/createproject" className="btn btn-primary btn-sm ms-3">
-                + New Pproject
-              </Link>
-            </div>
-            <div className="project-list ">
-              <div className="row">
-                <div className="col-md-4 mt-4">
-                  <div className="card bg-light">
-                    <div className="ms-3 mt-3">
-                      <span className="badge  text-bg-warning">Warning</span>
-                    </div>
-                    <div className="card-body border-none">
-                      <h4>Create Moodboard</h4>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Repudiandae repellendus quia optio dicta provident
-                        fugiat dolore accusantium! Vero, quas dolorum.
-                      </p>
-                    </div>
+          {/* categries */}
+          <section className="row">
+            {tagsData?.map((tag) => (
+              <section className="col-12 col-md-2 ms-2 mt-5">
+                <div className="card">
+                  <div className="card-harder">
+                    <h6 className=" p-2">{tag.name}</h6>
+                  </div>
+                  <div className="card-body">
+                    <p>this is good</p>
+                    <p>server is down</p>
                   </div>
                 </div>
-                <div className="col-md-4 mt-4">
-                  <div className="card bg-light">
-                    <div className="ms-3 mt-3">
-                      <span className="badge  text-bg-success">Completed</span>
-                    </div>
-                    <div className="card-body border-none">
-                      <h4>Create Moodboard</h4>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Repudiandae repellendus quia optio dicta provident
-                        fugiat dolore accusantium! Vero, quas dolorum.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* tasks */}
-          <section id="task " className="mt-5 container">
-            <div className="d-flex mt-4">
-              <h2>My Tasks</h2>
-              <select className="form-select-sm bg-light ms-3" name="" id="">
-                <option value="#">Filter</option>
-                <option value="In Progress">In progress</option>
-                <option value="In Progress">Completed</option>
-              </select>
-              <Link to="/taskfrom" className="btn btn-primary ms-3">
-                + New Task
-              </Link>
-            </div>
-            <div className="task-list ">
-              <div className="row">
-                <div className="col-md-4 mt-4">
-                  <div className="card bg-light">
-                    <div className="ms-3 mt-3">
-                      <span className="badge  text-bg-warning">Warning</span>
-                    </div>
-                    <div className="card-body border-none">
-                      <h4>Create Moodboard</h4>
-                      <p>Due on: 20th Dec 2024</p>
-                      <img
-                        style={{ width: "10%" }}
-                        src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-                        alt="profile-image"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-4 mt-4">
-                  <div className="card bg-light">
-                    <div className="ms-3 mt-3">
-                      <span className="badge  text-bg-success">Completed</span>
-                    </div>
-                    <div className="card-body border-none">
-                      <h4>Create Moodboard</h4>
-                      <p>Due on: 20th Dec 2024</p>
-                      <img
-                        style={{ width: "10%" }}
-                        src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-                        alt="profile-image"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+              </section>
+            ))}
           </section>
         </section>
       </section>

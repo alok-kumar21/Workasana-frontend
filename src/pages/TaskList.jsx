@@ -3,7 +3,8 @@ import useFetch from "./useFetch";
 
 const TaskList = () => {
   const { data: taskData } = useFetch("http://localhost:5001/tasks");
-  const { data: projectData } = useFetch("http://localhost:5001/projects");
+  const { data: userData } = useFetch("http://localhost:5001/users");
+  console.log(userData);
   console.log(taskData);
 
   return (
@@ -27,9 +28,9 @@ const TaskList = () => {
                     id=""
                   >
                     <option value="">Project Name</option>
-                    {projectData?.map((project) => (
-                      <option key={project._id} value={project.name}>
-                        {project.name}
+                    {taskData?.map((task) => (
+                      <option key={task._id} value={task.project?.name}>
+                        {task.project?.name}
                       </option>
                     ))}
                   </select>
@@ -41,9 +42,11 @@ const TaskList = () => {
                     id=""
                   >
                     <option value="">Owner</option>
-                    <option value="">user 1</option>
-                    <option value="">user 2</option>
-                    <option value="">user 3</option>
+                    {userData?.map((user) => (
+                      <option key={user._id} value={user.name}>
+                        {user.name}
+                      </option>
+                    ))}
                   </select>
                 </th>
 
@@ -53,7 +56,12 @@ const TaskList = () => {
                     name=""
                     id=""
                   >
-                    <option value="">Team</option>
+                    <option>Select Team</option>
+                    {taskData?.map((task) => (
+                      <option key={task._id} value={task.team?.name}>
+                        {task.team?.name}
+                      </option>
+                    ))}
                   </select>
                 </th>
 
@@ -63,7 +71,12 @@ const TaskList = () => {
                     name=""
                     id=""
                   >
-                    <option value="">Tags</option>
+                    <option value="#">Select Tags</option>
+                    {taskData?.map((task) => (
+                      <option key={task._id} value={task.tags.join(",")}>
+                        {task.tags.join(",")}
+                      </option>
+                    ))}
                   </select>
                 </th>
 
@@ -74,6 +87,11 @@ const TaskList = () => {
                     id=""
                   >
                     <option value="">status</option>
+                    {taskData?.map((task) => (
+                      <option key={task._id} value={task.status}>
+                        {task.status}
+                      </option>
+                    ))}
                   </select>
                 </th>
               </tr>
@@ -81,9 +99,9 @@ const TaskList = () => {
             <tbody>
               {taskData?.map((task) => (
                 <tr key={task._id}>
-                  <td>{task.name}</td>
-                  <td>fbfd</td>
-                  <td>dcdfc</td>
+                  <td>{task.project?.name}</td>
+                  <td>{task.owners?.map((user) => user.name + ", ")}</td>
+                  <td>{task.team?.name}</td>
                   <td>{task.tags.join(",")}</td>
                   <td>{task.status}</td>
                 </tr>

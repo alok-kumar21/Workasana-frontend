@@ -5,7 +5,7 @@ const Menu = () => {
     <aside className="bg-light">
       <section>
         <div className="container">
-          <Link className="text-primary navbar-brand">
+          <Link to="/dashboard" className="text-primary navbar-brand">
             <h1>Workasana</h1>
           </Link>
 

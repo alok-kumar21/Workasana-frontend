@@ -42,7 +42,17 @@ const Dashboard = () => {
   return (
     <div>
       <div className="float-end mt-5 me-5">
-        <button className="btn btn-primary float-end mt-1" onClick={logout}>
+        <button className="btn btn-light shadow me-3">+ Add Tag</button>
+        <Link
+          to="/taskfrom"
+          className="btn btn-light  mt-1 me-3 shadow border-2"
+        >
+          + Add Task
+        </Link>
+        <button
+          className="btn btn-primary float-end mt-1 shadow"
+          onClick={logout}
+        >
           Logout
         </button>
       </div>
@@ -58,7 +68,7 @@ const Dashboard = () => {
             <div className="input-group flex-nowrap">
               <input
                 type="email"
-                className="form-control"
+                className="form-control form-control-sm w-25"
                 placeholder="Search"
               />
               <span className="input-group-text bg-light" id="addon-wrapping">
@@ -69,15 +79,12 @@ const Dashboard = () => {
           {/* categries */}
           <section className="row">
             {tagsData?.map((tag) => (
-              <section className="col-12 col-md-2 ms-2 mt-5">
-                <div className="card">
-                  <div className="card-harder">
-                    <h6 className=" p-2">{tag.name}</h6>
+              <section className="col-12 col-md-3 ms-2 mt-5">
+                <div className=" rounded card">
+                  <div className="bg-light card-header">
+                    <p className=" p-2">{tag.name}</p>
                   </div>
-                  <div className="card-body">
-                    <p>this is good</p>
-                    <p>server is down</p>
-                  </div>
+                  <div className="card-body"></div>
                 </div>
               </section>
             ))}

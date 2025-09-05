@@ -106,20 +106,7 @@ const TaskList = () => {
                   <td>{task.status}</td>
                 </tr>
               ))}
-              {/* <tr>
-                <td>Mobile App</td>
-                <td>Jacob Thornton</td>
-                <td>Design</td>
-                <td>UX, Review</td>
-                <td>Pending</td>
-              </tr>
-              <tr>
-                <td>API Integration</td>
-                <td>John Doe</td>
-                <td>Backend</td>
-                <td>API, Critical</td>
-                <td>Completed</td>
-              </tr> */}
+            
             </tbody>
           </table>
         </div>

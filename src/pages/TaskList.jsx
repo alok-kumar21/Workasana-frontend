@@ -4,8 +4,6 @@ import useFetch from "./useFetch";
 const TaskList = () => {
   const { data: taskData } = useFetch("http://localhost:5001/tasks");
   const { data: userData } = useFetch("http://localhost:5001/users");
-  console.log(userData);
-  console.log(taskData);
 
   return (
     <section className="row">
@@ -106,7 +104,6 @@ const TaskList = () => {
                   <td>{task.status}</td>
                 </tr>
               ))}
-            
             </tbody>
           </table>
         </div>

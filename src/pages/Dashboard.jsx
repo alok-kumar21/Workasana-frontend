@@ -111,7 +111,7 @@ import useFetch from "./useFetch";
 const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
   const navigate = useNavigate();
-
+  console.log(tasks);
   const { data: tagsData } = useFetch("http://localhost:5001/tags");
 
   const fetchTasks = async () => {
